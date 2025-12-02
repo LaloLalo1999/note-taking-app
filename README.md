@@ -152,3 +152,21 @@ MIT
 - Built with [TanStack Start](https://tanstack.com/start)
 - Powered by [Convex](https://convex.dev/)
 - AI features by [Mastra](https://mastra.ai/) and [Google Gemini](https://ai.google.dev/)
+
+## Demo Mode
+
+The app includes a demo mode that works without a Convex backend. This allows you to:
+- Test the UI and UX immediately
+- See all features in action with mock data
+- Develop frontend features without backend setup
+
+When you're ready for production:
+1. Set up a Convex account at [convex.dev](https://convex.dev)
+2. Run `npx convex dev` and follow the setup
+3. The app will automatically switch from demo mode to real backend
+
+## Notes
+
+- **Bun Support**: This project is configured to work with Bun as the package manager. However, npm is also fully supported. Use `bun install` if Bun is available in your environment.
+- **Node Version**: TanStack Start requires Node.js 22+, but works with Node 20 with warnings.
+- **Convex Generated Files**: The `convex/_generated/` directory contains stub files. These will be regenerated when you run `npx convex dev`.

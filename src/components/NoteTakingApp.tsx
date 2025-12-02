@@ -12,7 +12,8 @@ export default function NoteTakingApp() {
   const [showAIAssistant, setShowAIAssistant] = useState(false)
 
   // Check if api is properly initialized
-  const isConvexReady = api && api.notes && api.notes.getNotes
+  const convexUrl = import.meta.env.VITE_CONVEX_URL
+  const isConvexReady = convexUrl && typeof api.notes?.getNotes === 'function'
   
   const notes = useQuery(isConvexReady ? api.notes.getNotes : 'skip') || []
   const selectedNote = useQuery(

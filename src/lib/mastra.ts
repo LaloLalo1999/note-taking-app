@@ -18,7 +18,6 @@ export const mastra = new Mastra({
       model: new Model({
         provider: "GOOGLE",
         name: "gemini-1.5-flash",
-        toolChoice: "auto",
       }),
       enabledTools: {},
     }),
