@@ -11,14 +11,17 @@ export default function NoteTakingApp() {
   const [searchTerm, setSearchTerm] = useState('')
   const [showAIAssistant, setShowAIAssistant] = useState(false)
 
-  const notes = useQuery(api.notes.getNotes) || []
+  // Check if api is properly initialized
+  const isConvexReady = api && api.notes && api.notes.getNotes
+  
+  const notes = useQuery(isConvexReady ? api.notes.getNotes : 'skip') || []
   const selectedNote = useQuery(
-    api.notes.getNote,
+    isConvexReady && selectedNoteId ? api.notes.getNote : 'skip',
     selectedNoteId ? { id: selectedNoteId } : 'skip'
   )
 
-  const createNote = useMutation(api.notes.createNote)
-  const deleteNote = useMutation(api.notes.deleteNote)
+  const createNote = useMutation(isConvexReady ? api.notes.createNote : 'skip')
+  const deleteNote = useMutation(isConvexReady ? api.notes.deleteNote : 'skip')
 
   const filteredNotes = searchTerm
     ? notes.filter(
@@ -44,6 +47,29 @@ export default function NoteTakingApp() {
         setSelectedNoteId(null)
       }
     }
+  }
+
+  // Show setup message if Convex is not ready
+  if (!isConvexReady) {
+    return (
+      <div className="flex h-screen bg-slate-900 text-slate-100 items-center justify-center">
+        <div className="max-w-2xl p-8 bg-slate-800 rounded-lg border border-slate-700">
+          <h1 className="text-3xl font-bold mb-4 text-cyan-400">Welcome to Note Taking App!</h1>
+          <p className="text-slate-300 mb-4">
+            To get started, you need to set up the Convex backend:
+          </p>
+          <ol className="list-decimal list-inside space-y-2 text-slate-300 mb-6">
+            <li>Copy <code className="bg-slate-900 px-2 py-1 rounded">.env.example</code> to <code className="bg-slate-900 px-2 py-1 rounded">.env.local</code></li>
+            <li>Run <code className="bg-slate-900 px-2 py-1 rounded">npx convex dev</code> in a separate terminal</li>
+            <li>Optionally, add your Google Gemini API key for AI features</li>
+            <li>Refresh this page</li>
+          </ol>
+          <p className="text-sm text-slate-400">
+            See the README.md for detailed setup instructions.
+          </p>
+        </div>
+      </div>
+    )
   }
 
   return (
