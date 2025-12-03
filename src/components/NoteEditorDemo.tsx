@@ -14,6 +14,15 @@ interface NoteEditorDemoProps {
   }
 }
 
+/**
+ * Render a note editor that supports editing the title and Markdown content with a preview toggle.
+ *
+ * Edits to the title or content update local state and are persisted via the configured updateNote handler.
+ *
+ * @param noteId - Identifier of the note being edited.
+ * @param note - The initial note data; should include `title`, `content`, and optional `tags`.
+ * @returns The UI for viewing and editing the specified note, including an editable title input, a Markdown textarea, and a rendered Markdown preview.
+ */
 export default function NoteEditorDemo({ noteId, note }: NoteEditorDemoProps) {
   const [title, setTitle] = useState(note.title)
   const [content, setContent] = useState(note.content)

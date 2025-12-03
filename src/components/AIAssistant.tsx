@@ -6,6 +6,13 @@ interface AIAssistantProps {
   onClose: () => void
 }
 
+/**
+ * Render an AI assistant UI that lets the user compose queries, use quick-action prompts (Improve, Summarize, Ideas), and view a chat-like history with simulated AI responses.
+ *
+ * @param noteContent - The current note text (accepted by the component but not used by the UI logic).
+ * @param onClose - Callback invoked when the assistant's close button is clicked.
+ * @returns The rendered AI assistant UI as a JSX element.
+ */
 export default function AIAssistant({ noteContent: _, onClose }: AIAssistantProps) {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<

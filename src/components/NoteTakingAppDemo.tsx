@@ -5,6 +5,13 @@ import NoteEditorDemo from './NoteEditorDemo'
 import AIAssistant from './AIAssistant'
 import { useMockConvex } from '../lib/mockConvex'
 
+/**
+ * Demo note-taking React component that provides a searchable sidebar, note editor, and an optional AI assistant panel.
+ *
+ * Renders a UI that lists notes from a mock Convex data source, supports creating and deleting notes, selecting a note to edit, filtering notes by title or content, and toggling an AI assistant for the selected note.
+ *
+ * @returns The rendered JSX element for the complete note-taking demo UI.
+ */
 export default function NoteTakingAppDemo() {
   const [selectedNoteId, setSelectedNoteId] = useState<Id<'notes'> | null>(null)
   const [searchTerm, setSearchTerm] = useState('')

@@ -33,6 +33,12 @@ export const Route = createRootRoute({
   shellComponent: RootDocument,
 })
 
+/**
+ * Root HTML document component that wraps page content with application-wide providers and layout.
+ *
+ * @param children - Page content to render inside the document body
+ * @returns A JSX element representing the full HTML document including providers, header, devtools, and scripts
+ */
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
