@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "dev:vite": {
+      "cache": false,
+      "persistent": true
+    },
+    "build:vite": {
+      "outputs": [".output/**", "dist/**", ".nitro/**"],
+      "env": ["VITE_CONVEX_URL", "GOOGLE_API_KEY", "MASTRA_API_KEY"]
+    },
+    "serve:vite": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["build:vite"]
+    },
+    "test:vite": {
+      "cache": true
+    }
+  }
+}
