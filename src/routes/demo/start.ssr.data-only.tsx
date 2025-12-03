@@ -7,6 +7,11 @@ export const Route = createFileRoute('/demo/start/ssr/data-only')({
   loader: async () => await getPunkSongs(),
 })
 
+/**
+ * Render a centered card that displays the punk songs provided by the route loader.
+ *
+ * @returns A React element with a full-screen gradient/radial background and a centered, styled card that lists each song's name and artist.
+ */
 function RouteComponent() {
   const punkSongs = Route.useLoaderData()
 

@@ -7,6 +7,14 @@ export const Route = createFileRoute('/demo/start/ssr/spa-mode')({
   component: RouteComponent,
 })
 
+/**
+ * Render the SPA-mode view that displays a list of punk songs.
+ *
+ * Fetches punk songs via `getPunkSongs` when the component mounts and renders a centered, styled panel
+ * containing a vertical list where each item shows a song's name and artist.
+ *
+ * @returns The React element representing the SPA-mode punk songs list UI.
+ */
 function RouteComponent() {
   const [punkSongs, setPunkSongs] = useState<
     Awaited<ReturnType<typeof getPunkSongs>>

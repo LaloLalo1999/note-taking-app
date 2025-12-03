@@ -12,6 +12,16 @@ import {
   X,
 } from 'lucide-react'
 
+/**
+ * Top navigation bar with a left slide-in drawer containing app navigation.
+ *
+ * The header includes a menu button that opens a left-side drawer with primary links
+ * (Home, Start demos, API request, server functions). The drawer can be closed via
+ * a close button or by selecting a link, and exposes an expandable "Start - SSR Demos"
+ * group that reveals nested SSR demo links when expanded.
+ *
+ * @returns The rendered header and slide-in navigation drawer elements.
+ */
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [groupedExpanded, setGroupedExpanded] = useState<

@@ -15,6 +15,18 @@ interface NoteEditorProps {
   }
 }
 
+/**
+ * Editable note UI with live synchronization and a Markdown preview.
+ *
+ * Renders a title input, editor/preview toggle buttons, and a content area that switches
+ * between a textarea (edit mode) and rendered Markdown (preview mode).
+ *
+ * Updates to the title or content are sent to the backend via the `api.notes.updateNote` mutation.
+ *
+ * @param noteId - The identifier of the note being edited.
+ * @param note - The note object containing `title`, `content`, and optional `tags`.
+ * @returns A React element rendering the note editor with live save and Markdown preview.
+ */
 export default function NoteEditor({ noteId, note }: NoteEditorProps) {
   const [title, setTitle] = useState(note.title)
   const [content, setContent] = useState(note.content)

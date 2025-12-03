@@ -17,6 +17,15 @@ const loggedServerFunction = createServerFn({ method: "GET" }).middleware([
 
 const TODOS_FILE = 'todos.json'
 
+/**
+ * Read and parse the todos JSON file, falling back to a default two-item list if the file cannot be read.
+ *
+ * @returns An array of todo objects, each with `id` (number) and `name` (string). The fallback default is:
+ * [
+ *   { id: 1, name: 'Get groceries' },
+ *   { id: 2, name: 'Buy a new phone' }
+ * ]
+ */
 async function readTodos() {
   return JSON.parse(
     await fs.promises.readFile(TODOS_FILE, 'utf-8').catch(() =>
@@ -50,6 +59,14 @@ export const Route = createFileRoute('/demo/start/server-funcs')({
   loader: async () => await getTodos(),
 })
 
+/**
+ * Renders the "Start Server Functions" todo UI and manages adding todos via the server functions.
+ *
+ * The component reads initial todos from the route loader, displays them, provides an input for a new todo,
+ * and submits additions to the server then refreshes the loader data.
+ *
+ * @returns The React element for the Home route containing the todo list, input field, and add button.
+ */
 function Home() {
   const router = useRouter()
   let todos = Route.useLoaderData()

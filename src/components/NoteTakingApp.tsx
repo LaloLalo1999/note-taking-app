@@ -16,6 +16,13 @@ interface Note {
   updatedAt: number
 }
 
+/**
+ * Render the note-taking interface with Convex-backed data: searchable notes sidebar, note editor, and an optional AI assistant.
+ *
+ * If the Convex backend is not configured, renders a setup guide instead of the main UI.
+ *
+ * @returns The component's React element tree for the note-taking application.
+ */
 export default function NoteTakingApp() {
   const [selectedNoteId, setSelectedNoteId] = useState<Id<'notes'> | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
