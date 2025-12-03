@@ -1,6 +1,6 @@
 import { Mastra } from "@mastra/core";
 import { noteAssistant } from "./agents";
-import { improveNoteTool, summarizeNoteTool, generateIdeasTool } from "./tools";
+import { improveNoteTool, summarizeNoteTool, generateIdeasTool, setMastraInstance } from "./tools";
 
 // Initialize Mastra with Gemini model
 export const mastra = new Mastra({
@@ -8,6 +8,9 @@ export const mastra = new Mastra({
     noteAssistant,
   },
 });
+
+// Set the mastra instance for tools to use
+setMastraInstance(mastra);
 
 // Export tools
 export { improveNoteTool, summarizeNoteTool, generateIdeasTool };

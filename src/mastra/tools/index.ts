@@ -1,5 +1,12 @@
-import { createTool } from "@mastra/core";
+import { createTool, Mastra } from "@mastra/core";
 import { z } from "zod";
+
+// Get mastra instance - this will be set by the main index.ts
+let mastraInstance: Mastra;
+
+export function setMastraInstance(instance: Mastra) {
+  mastraInstance = instance;
+}
 
 // Tool for improving note content
 export const improveNoteTool = createTool({
@@ -8,8 +15,8 @@ export const improveNoteTool = createTool({
   inputSchema: z.object({
     content: z.string().describe("The note content to improve"),
   }),
-  execute: async ({ context, mastra }) => {
-    const agent = mastra.getAgent("noteAssistant");
+  execute: async ({ context }) => {
+    const agent = mastraInstance.getAgent("noteAssistant");
     const response = await agent.generate(
       `Please improve this note content while maintaining its core message:\n\n${context.content}`
     );
@@ -24,8 +31,8 @@ export const summarizeNoteTool = createTool({
   inputSchema: z.object({
     content: z.string().describe("The note content to summarize"),
   }),
-  execute: async ({ context, mastra }) => {
-    const agent = mastra.getAgent("noteAssistant");
+  execute: async ({ context }) => {
+    const agent = mastraInstance.getAgent("noteAssistant");
     const response = await agent.generate(
       `Please provide a concise summary of this note:\n\n${context.content}`
     );
@@ -40,8 +47,8 @@ export const generateIdeasTool = createTool({
   inputSchema: z.object({
     topic: z.string().describe("The topic to generate ideas about"),
   }),
-  execute: async ({ context, mastra }) => {
-    const agent = mastra.getAgent("noteAssistant");
+  execute: async ({ context }) => {
+    const agent = mastraInstance.getAgent("noteAssistant");
     const response = await agent.generate(
       `Generate 5 interesting ideas related to: ${context.topic}`
     );

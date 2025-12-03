@@ -11,5 +11,5 @@ export const noteAssistant = new Agent({
   - Brainstorm ideas
   
   Always provide helpful, concise, and well-formatted responses.`,
-  model: "google/gemini-1.5-flash",
+  model: "google/gemini-3-pro-preview",
 });
