@@ -6,6 +6,16 @@ import { Search, Plus, FileText, Sparkles, Trash2 } from 'lucide-react'
 import NoteEditor from './NoteEditor'
 import AIAssistant from './AIAssistant'
 
+interface Note {
+  _id: Id<'notes'>
+  _creationTime: number
+  title: string
+  content: string
+  tags?: string[]
+  createdAt: number
+  updatedAt: number
+}
+
 export default function NoteTakingApp() {
   const [selectedNoteId, setSelectedNoteId] = useState<Id<'notes'> | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
@@ -15,18 +25,24 @@ export default function NoteTakingApp() {
   const convexUrl = import.meta.env.VITE_CONVEX_URL
   const isConvexReady = convexUrl && typeof api.notes?.getNotes === 'function'
   
-  const notes = useQuery(isConvexReady ? api.notes.getNotes : undefined as any) || []
+  // Use conditional hook calls with type safety
+  const notesQuery = isConvexReady ? api.notes.getNotes : undefined
+  const noteQuery = isConvexReady && selectedNoteId ? api.notes.getNote : undefined
+  const createNoteMutation = isConvexReady ? api.notes.createNote : undefined
+  const deleteNoteMutation = isConvexReady ? api.notes.deleteNote : undefined
+  
+  const notes = (useQuery(notesQuery as any) as Note[] | undefined) || []
   const selectedNote = useQuery(
-    isConvexReady && selectedNoteId ? api.notes.getNote : undefined as any,
-    selectedNoteId ? { id: selectedNoteId } : undefined as any
-  )
+    noteQuery as any,
+    selectedNoteId ? { id: selectedNoteId } : 'skip' as any
+  ) as Note | null | undefined
 
-  const createNote = useMutation(isConvexReady ? api.notes.createNote : undefined as any)
-  const deleteNote = useMutation(isConvexReady ? api.notes.deleteNote : undefined as any)
+  const createNote = useMutation(createNoteMutation as any)
+  const deleteNote = useMutation(deleteNoteMutation as any)
 
   const filteredNotes = searchTerm
     ? notes.filter(
-        (note: any) =>
+        (note: Note) =>
           note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           note.content.toLowerCase().includes(searchTerm.toLowerCase())
       )
@@ -107,7 +123,7 @@ export default function NoteTakingApp() {
               <p className="text-xs mt-1">Create your first note!</p>
             </div>
           ) : (
-            filteredNotes.map((note: any) => (
+            filteredNotes.map((note: Note) => (
               <div
                 key={note._id}
                 onClick={() => setSelectedNoteId(note._id)}
