@@ -135,9 +135,12 @@ The app includes a comprehensive demo mode that works without a Convex backend:
 
 ## Environment Variables
 
-- `VITE_CONVEX_URL`: Convex deployment URL (required for production)
-- `GOOGLE_API_KEY`: Google Gemini API key (for AI features)
-- `MASTRA_API_KEY`: Mastra API key (if required)
+- `VITE_CONVEX_URL`: Convex deployment URL (optional - app has demo mode without backend)
+  - For local development: `http://localhost:3210`
+  - For production: Get from your Convex dashboard
+- `GOOGLE_API_KEY`: Google Gemini API key (optional - required for AI features)
+  - Get your API key from https://ai.google.dev/
+- `MASTRA_API_KEY`: Mastra API key (optional - if required by Mastra configuration)
 
 ## Testing Guidelines
 
