@@ -119,6 +119,38 @@ note-taking-app/
 
 ## Development
 
+### Turborepo
+
+This project uses [Turborepo](https://turborepo.com/) for efficient task orchestration and caching. Turborepo provides:
+- **Smart caching**: Speeds up builds by caching task outputs
+- **Task pipelines**: Efficiently orchestrates task dependencies
+- **Optimized execution**: Only rebuilds what changed
+
+All npm scripts now run through Turborepo for better performance:
+
+```bash
+# Development
+npm run dev          # Start development server with Turborepo
+
+# Building
+npm run build        # Build with caching and optimization
+
+# Testing
+npm run test         # Run tests with caching
+
+# Preview
+npm run serve        # Preview production build
+```
+
+If you need to bypass Turborepo and run commands directly:
+```bash
+npm run dev:vite     # Direct vite dev command
+npm run build:vite   # Direct vite build command
+npm run test:vite    # Direct vitest command
+```
+
+**Turborepo Cache**: The first build may take the full time, but subsequent builds with no changes will be nearly instantaneous thanks to Turborepo's caching.
+
 ### Building for Production
 
 ```bash

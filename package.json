@@ -2,11 +2,16 @@
   "name": "note-app",
   "private": true,
   "type": "module",
+  "packageManager": "npm@10.8.2",
   "scripts": {
-    "dev": "PORT=3000 vite dev --port 3000",
-    "build": "vite build",
-    "serve": "vite preview",
-    "test": "vitest run"
+    "dev": "turbo run dev:vite",
+    "build": "turbo run build:vite",
+    "serve": "turbo run serve:vite",
+    "test": "turbo run test:vite",
+    "dev:vite": "PORT=3000 vite dev --port 3000",
+    "build:vite": "vite build",
+    "serve:vite": "vite preview",
+    "test:vite": "vitest run"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -38,6 +43,7 @@
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
     "jsdom": "^27.0.0",
+    "turbo": "^2.6.1",
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
