@@ -4,6 +4,11 @@ export const Route = createFileRoute('/demo/start/ssr/')({
   component: RouteComponent,
 })
 
+/**
+ * Renders the "SSR Demos" landing UI with navigation links to three demo pages.
+ *
+ * @returns A React element containing the styled landing page with links to "SPA Mode", "Full SSR", and "Data Only" demo routes.
+ */
 function RouteComponent() {
   return (
     <div

@@ -6,6 +6,11 @@ import { api } from '../../convex/_generated/api'
 
 export const Route = createFileRoute('/')({ component: App })
 
+/**
+ * Chooses and renders the appropriate note-taking UI based on Convex availability.
+ *
+ * @returns The main `NoteTakingApp` when Convex is available; otherwise the `NoteTakingAppDemo` wrapped in a `MockConvexProvider`.
+ */
 function App() {
   // Check if Convex is available by checking if the URL is configured
   const convexUrl = import.meta.env.VITE_CONVEX_URL

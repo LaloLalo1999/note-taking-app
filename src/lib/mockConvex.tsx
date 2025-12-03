@@ -21,6 +21,14 @@ interface MockConvexContextType {
 
 const MockConvexContext = createContext<MockConvexContextType | null>(null)
 
+/**
+ * Provides an in-memory mock Convex context for managing notes to its child components.
+ *
+ * The provider maintains a sample notes list and exposes CRUD operations (createNote, updateNote, deleteNote)
+ * plus a getNote helper through context for use by descendant components.
+ *
+ * @returns The provider element that supplies notes and note-management functions to descendant components.
+ */
 export function MockConvexProvider({ children }: { children: ReactNode }) {
   const [notes, setNotes] = useState<Note[]>([
     {
@@ -127,6 +135,12 @@ Happy note-taking! ✨`,
   )
 }
 
+/**
+ * Access the in-memory MockConvex context provided by MockConvexProvider.
+ *
+ * @returns The context value containing `notes` and the CRUD methods (`createNote`, `updateNote`, `deleteNote`, `getNote`).
+ * @throws Error if called outside of a MockConvexProvider.
+ */
 export function useMockConvex() {
   const context = useContext(MockConvexContext)
   if (!context) {

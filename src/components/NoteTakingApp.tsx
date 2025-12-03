@@ -6,6 +6,13 @@ import { Search, Plus, FileText, Sparkles, Trash2 } from 'lucide-react'
 import NoteEditor from './NoteEditor'
 import AIAssistant from './AIAssistant'
 
+/**
+ * Render the NoteTakingApp component that provides a full note-taking UI including search, create, edit, and delete flows with an optional AI assistant.
+ *
+ * Renders a setup/welcome screen if the Convex backend is not configured; otherwise renders a left sidebar (search, new note, notes list), a main editor area for the selected note, and an optional AI assistant sidebar.
+ *
+ * @returns The React element for the note-taking application interface.
+ */
 export default function NoteTakingApp() {
   const [selectedNoteId, setSelectedNoteId] = useState<Id<'notes'> | null>(null)
   const [searchTerm, setSearchTerm] = useState('')

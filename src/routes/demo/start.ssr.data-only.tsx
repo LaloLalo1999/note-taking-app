@@ -7,6 +7,13 @@ export const Route = createFileRoute('/demo/start/ssr/data-only')({
   loader: async () => await getPunkSongs(),
 })
 
+/**
+ * Renders the "Data Only SSR - Punk Songs" page using the route loader data.
+ *
+ * Displays a full-screen gradient background with a centered card that lists each song's name and artist from the route loader.
+ *
+ * @returns The React element containing the styled list of punk songs.
+ */
 function RouteComponent() {
   const punkSongs = Route.useLoaderData()
 

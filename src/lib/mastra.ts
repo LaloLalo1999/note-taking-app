@@ -72,7 +72,11 @@ export const generateIdeasTool = createTool({
   },
 });
 
-// Get the note assistant agent
+/**
+ * Retrieves the configured note assistant agent from the Mastra instance.
+ *
+ * @returns The "noteAssistant" agent.
+ */
 export function getNoteAssistant() {
   return mastra.getAgent("noteAssistant");
 }

@@ -14,6 +14,13 @@ interface NoteEditorDemoProps {
   }
 }
 
+/**
+ * Renders an editable note UI with a title input and a toggleable Markdown editor/preview.
+ *
+ * @param noteId - Identifier of the note being edited
+ * @param note - Initial note data containing `title`, `content`, and optional `tags`
+ * @returns A React element that displays the note title, an editor/preview toggle, and either a controlled textarea for Markdown editing or a rendered Markdown preview
+ */
 export default function NoteEditorDemo({ noteId, note }: NoteEditorDemoProps) {
   const [title, setTitle] = useState(note.title)
   const [content, setContent] = useState(note.content)

@@ -6,6 +6,11 @@ export const Route = createFileRoute('/demo/start/ssr/full-ssr')({
   loader: async () => await getPunkSongs(),
 })
 
+/**
+ * Render a full-screen page that displays a styled list of punk songs sourced from the route loader.
+ *
+ * @returns A JSX element containing a centered, styled container that lists each song's name and artist from the route loader data.
+ */
 function RouteComponent() {
   const punkSongs = Route.useLoaderData()
 

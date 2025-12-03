@@ -17,6 +17,11 @@ const loggedServerFunction = createServerFn({ method: "GET" }).middleware([
 
 const TODOS_FILE = 'todos.json'
 
+/**
+ * Load the todo list from the persistent JSON file, falling back to a built-in default if the file cannot be read.
+ *
+ * @returns An array of todo objects parsed from the file or the default array; each object has `id` (number) and `name` (string).
+ */
 async function readTodos() {
   return JSON.parse(
     await fs.promises.readFile(TODOS_FILE, 'utf-8').catch(() =>
@@ -50,6 +55,13 @@ export const Route = createFileRoute('/demo/start/server-funcs')({
   loader: async () => await getTodos(),
 })
 
+/**
+ * Renders the "Start Server Functions" todo demo UI and its interactive controls.
+ *
+ * Displays todos provided by the route loader, lets the user add a new todo via the server function, clears the input after submission, and triggers a route invalidation to refresh data.
+ *
+ * @returns The rendered React element for the todo demo UI
+ */
 function Home() {
   const router = useRouter()
   let todos = Route.useLoaderData()

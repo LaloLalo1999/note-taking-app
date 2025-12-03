@@ -12,6 +12,14 @@ import {
   X,
 } from 'lucide-react'
 
+/**
+ * Render the top header bar with a menu button and a slide-in side navigation drawer.
+ *
+ * The drawer provides navigation links (including an expandable "Start - SSR Demos" group),
+ * manages its open/closed state internally, and closes when a link is selected or the close button is pressed.
+ *
+ * @returns The header and side navigation JSX element
+ */
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [groupedExpanded, setGroupedExpanded] = useState<

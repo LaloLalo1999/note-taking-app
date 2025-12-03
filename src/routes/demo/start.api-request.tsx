@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react'
 
 import { createFileRoute } from '@tanstack/react-router'
 
+/**
+ * Fetches an array of names from the demo API endpoint.
+ *
+ * @returns An array of names returned by `/demo/api/names`.
+ */
 function getNames() {
   return fetch('/demo/api/names').then((res) => res.json() as Promise<string[]>)
 }
@@ -10,6 +15,13 @@ export const Route = createFileRoute('/demo/start/api-request')({
   component: Home,
 })
 
+/**
+ * Renders a page that fetches and displays a list of names.
+ *
+ * Fetches the names once on mount and presents them as a styled, centered list.
+ *
+ * @returns The rendered JSX element for the page.
+ */
 function Home() {
   const [names, setNames] = useState<Array<string>>([])
 
