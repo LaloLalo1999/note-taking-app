@@ -15,18 +15,18 @@ export default function NoteTakingApp() {
   const convexUrl = import.meta.env.VITE_CONVEX_URL
   const isConvexReady = convexUrl && typeof api.notes?.getNotes === 'function'
   
-  const notes = useQuery(isConvexReady ? api.notes.getNotes : 'skip') || []
+  const notes = useQuery(isConvexReady ? api.notes.getNotes : undefined as any) || []
   const selectedNote = useQuery(
-    isConvexReady && selectedNoteId ? api.notes.getNote : 'skip',
-    selectedNoteId ? { id: selectedNoteId } : 'skip'
+    isConvexReady && selectedNoteId ? api.notes.getNote : undefined as any,
+    selectedNoteId ? { id: selectedNoteId } : undefined as any
   )
 
-  const createNote = useMutation(isConvexReady ? api.notes.createNote : 'skip')
-  const deleteNote = useMutation(isConvexReady ? api.notes.deleteNote : 'skip')
+  const createNote = useMutation(isConvexReady ? api.notes.createNote : undefined as any)
+  const deleteNote = useMutation(isConvexReady ? api.notes.deleteNote : undefined as any)
 
   const filteredNotes = searchTerm
     ? notes.filter(
-        (note) =>
+        (note: any) =>
           note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           note.content.toLowerCase().includes(searchTerm.toLowerCase())
       )
@@ -107,7 +107,7 @@ export default function NoteTakingApp() {
               <p className="text-xs mt-1">Create your first note!</p>
             </div>
           ) : (
-            filteredNotes.map((note) => (
+            filteredNotes.map((note: any) => (
               <div
                 key={note._id}
                 onClick={() => setSelectedNoteId(note._id)}

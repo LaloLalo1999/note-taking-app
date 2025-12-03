@@ -1,4 +1,4 @@
-import { Mastra, Agent, Model, createTool } from "@mastra/core";
+import { Mastra, Agent, createTool } from "@mastra/core";
 import { z } from "zod";
 
 // Initialize Mastra with Gemini model
@@ -15,11 +15,7 @@ export const mastra = new Mastra({
       - Brainstorm ideas
       
       Always provide helpful, concise, and well-formatted responses.`,
-      model: new Model({
-        provider: "GOOGLE",
-        name: "gemini-1.5-flash",
-      }),
-      enabledTools: {},
+      model: "google/gemini-1.5-flash",
     }),
   },
 });

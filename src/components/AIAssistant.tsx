@@ -6,7 +6,7 @@ interface AIAssistantProps {
   onClose: () => void
 }
 
-export default function AIAssistant({ noteContent, onClose }: AIAssistantProps) {
+export default function AIAssistant({ noteContent: _, onClose }: AIAssistantProps) {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<
     Array<{ role: 'user' | 'assistant'; content: string }>
