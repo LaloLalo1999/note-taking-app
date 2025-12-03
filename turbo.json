@@ -15,9 +15,6 @@
       "dependsOn": ["build:vite"]
     },
     "test:vite": {
-      "outputs": ["coverage/**"]
-    },
-    "lint": {
       "cache": true
     }
   }
